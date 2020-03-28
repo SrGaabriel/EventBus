@@ -23,12 +23,10 @@ public class SimplePluginManager implements PluginManager {
             for (Method method : listener.getClass().getDeclaredMethods()) {
                 if (method.getParameterCount() == 1) {
                     try {
-                        if (method.getParameterCount() == 1) {
-                            if (method.isAnnotationPresent(EventHandler.class)) {
-                                Parameter param = method.getParameters()[0];
-                                if (param.getType().equals(event.getClass())) {
-                                    method.invoke(listener, event);
-                                }
+                        if (method.isAnnotationPresent(EventHandler.class)) {
+                            Parameter param = method.getParameters()[0];
+                            if (param.getType().equals(event.getClass())) {
+                                method.invoke(listener, event);
                             }
                         }
                     } catch (IllegalAccessException | InvocationTargetException e) {
